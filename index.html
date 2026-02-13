@@ -9,11 +9,11 @@
         body { background-color: #ffebee; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; margin: 0; font-family: 'Poppins', sans-serif; text-align: center; overflow: hidden; }
         .container { padding: 20px; z-index: 10; }
         h1 { color: #d32f2f; font-size: 1.8rem; min-height: 80px; }
-        .gif-container { height: 200px; margin-bottom: 20px; }
-        .gif-container img { border-radius: 15px; width: 200px; height: 200px; object-fit: cover; }
+        .gif-container { height: 200px; margin-bottom: 20px; display: flex; justify-content: center; }
+        .gif-container img { border-radius: 15px; width: 200px; height: 200px; object-fit: contain; background: white; border: 2px solid #ffcdd2; }
         .btn-wrapper { margin-top: 20px; display: flex; justify-content: center; align-items: center; gap: 15px; height: 100px; position: relative; }
-        .btn { padding: 15px 30px; font-size: 1.2rem; font-weight: bold; border: none; border-radius: 50px; cursor: pointer; transition: 0.2s; }
-        #yesBtn { background-color: #4caf50; color: white; }
+        .btn { padding: 15px 30px; font-size: 1.2rem; font-weight: bold; border: none; border-radius: 50px; cursor: pointer; transition: 0.2s; z-index: 100; }
+        #yesBtn { background-color: #4caf50; color: white; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
         #noBtn { background-color: #f44336; color: white; position: relative; }
         #success { display: none; }
     </style>
@@ -22,7 +22,7 @@
 
     <div id="main-content" class="container">
         <div class="gif-container">
-            <img id="displayGif" src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHR6bm94dnN6bm94dnN6bm94dnN6bm94dnN6bm94dnN6bm94diZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/cLS1cfxvGOPVpf9g3y/giphy.gif">
+            <img id="displayGif" src="https://i.postimg.cc/85zXp9mX/milk-and-mocha-bear-couple.gif">
         </div>
         <h1 id="question">Will you be my Valentine, Baby? 🌹</h1>
         
@@ -34,7 +34,8 @@
 
     <div id="success" class="container">
         <h1>Yayyy! I love you so much, Mushuu! 🥰❤️</h1>
-        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3Z6eXN6eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4ZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/K97pG8vXJ99A5w6zU8/giphy.gif" width="250">
+        <img src="https://i.postimg.cc/mD36vCyz/hug-love.gif" width="250">
+        <p style="color: #d32f2f; font-weight: bold; margin-top: 10px;">Best Decision Ever! ✨</p>
     </div>
 
     <script>
@@ -53,12 +54,13 @@
             "Ab toh YES hi dabana padega! ❤️"
         ];
 
+        // Direct Working GIF Links
         const gifs = [
-            "https://media.giphy.com/media/OPU6wUKARA3NTIAmCl/giphy.gif",
-            "https://media.giphy.com/media/vSk4v8Q5U0688/giphy.gif",
-            "https://media.giphy.com/media/l378giAZgxPw3QO52/giphy.gif",
-            "https://media.giphy.com/media/7SF5scGB2AFrO/giphy.gif",
-            "https://media.giphy.com/media/IXb5JF1XyCosM/giphy.gif"
+            "https://i.postimg.cc/0jXyvN2b/sad-cute.gif",
+            "https://i.postimg.cc/VvP2X6m8/bear-crying.gif",
+            "https://i.postimg.cc/q7fW347v/angry-cat.gif",
+            "https://i.postimg.cc/44pkS7x0/please.gif",
+            "https://i.postimg.cc/Kz6P07vG/last-chance.gif"
         ];
 
         function handleNo() {
@@ -67,19 +69,25 @@
             const question = document.getElementById('question');
             const mainGif = document.getElementById('displayGif');
 
+            // Message update
             question.innerText = messages[noCount % messages.length];
+            
+            // GIF update (Har 2 click pe badlega)
             mainGif.src = gifs[noCount % gifs.length];
 
+            // Button teleport
             const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
             const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
             noBtn.style.position = 'fixed';
             noBtn.style.left = x + 'px';
             noBtn.style.top = y + 'px';
 
-            // Yes button grow
+            // Yes button growing effect
             const currentSize = parseFloat(window.getComputedStyle(yesBtn).fontSize);
-            yesBtn.style.fontSize = (currentSize + 5) + "px";
-            yesBtn.style.padding = (currentSize + 5) + "px " + (currentSize + 20) + "px";
+            if(currentSize < 60) { // Limit growth
+                yesBtn.style.fontSize = (currentSize + 5) + "px";
+                yesBtn.style.padding = (currentSize + 5) + "px " + (currentSize + 20) + "px";
+            }
 
             noCount++;
         }
@@ -87,6 +95,7 @@
         function celebrate() {
             document.getElementById('main-content').style.display = 'none';
             document.getElementById('success').style.display = 'block';
+            
             var end = Date.now() + (5 * 1000);
             (function frame() {
                 confetti({ particleCount: 5, angle: 60, spread: 70, origin: { x: 0 }, colors: ['#ff0000', '#ff69b4'] });
