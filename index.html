@@ -40,7 +40,6 @@
 
     <script>
         let noCount = 0;
-        
         const messages = [
             "No? Are you sure, Gogoo? 🥺",
             "Pura soch lo ek baar, Baby...",
@@ -54,7 +53,7 @@
             "Ab toh YES hi dabana padega! ❤️"
         ];
 
-        // Using high-stability media links
+        // Sabse stable Beige Teddy Tenor links
         const gifs = [
             "https://media.tenor.com/v1.Y2lkPTc5MGI3NjExbnZueXN6eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4ZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/i1zhf7LhVv0GfS75z0/tenor.gif",
             "https://media.tenor.com/qL8_nbe1u8MAAAAi/sad-cute.gif",
@@ -69,18 +68,15 @@
             const question = document.getElementById('question');
             const mainGif = document.getElementById('displayGif');
 
-            // Update content
             question.innerText = messages[noCount % messages.length];
             mainGif.src = gifs[noCount % gifs.length];
 
-            // Teleport button
             const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
             const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
             noBtn.style.position = 'fixed';
             noBtn.style.left = x + 'px';
             noBtn.style.top = y + 'px';
 
-            // Yes button growth
             const currentSize = parseFloat(window.getComputedStyle(yesBtn).fontSize);
             if (currentSize < 100) { 
                 yesBtn.style.fontSize = (currentSize + 6) + "px";
@@ -92,7 +88,6 @@
         function celebrate() {
             document.getElementById('main-content').style.display = 'none';
             document.getElementById('success').style.display = 'block';
-            
             var end = Date.now() + (5 * 1000);
             (function frame() {
                 confetti({ particleCount: 5, angle: 60, spread: 70, origin: { x: 0 }, colors: ['#ff0000', '#ff69b4'] });
