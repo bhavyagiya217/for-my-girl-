@@ -40,6 +40,7 @@
 
     <script>
         let noCount = 0;
+        
         const messages = [
             "No? Are you sure, Gogoo? 🥺",
             "Pura soch lo ek baar, Baby...",
@@ -53,13 +54,13 @@
             "Ab toh YES hi dabana padega! ❤️"
         ];
 
-        // Sabse stable Beige Teddy Tenor links
+        // Optimized Tenor links that avoid the "blank/white" issue
         const gifs = [
-            "https://media.tenor.com/v1.Y2lkPTc5MGI3NjExbnZueXN6eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4ZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/i1zhf7LhVv0GfS75z0/tenor.gif",
-            "https://media.tenor.com/qL8_nbe1u8MAAAAi/sad-cute.gif",
-            "https://media.tenor.com/978MhY7Ias0AAAAi/sad-cry.gif",
-            "https://media.tenor.com/9XvGvFmP4AAAAAAi/bear-sad.gif",
-            "https://media.tenor.com/6S30R5H7I5QAAAAi/sad-cat.gif"
+            "https://media.tenor.com/On7_s9yXfS8AAAAi/milk-and-mocha-bear-crying.gif",
+            "https://media.tenor.com/Y_f_3xI8A0YAAAAi/milk-and-mocha-sad.gif",
+            "https://media.tenor.com/9v6rSg1y_K0AAAAi/milk-and-mocha.gif",
+            "https://media.tenor.com/On7_s9yXfS8AAAAi/milk-and-mocha-bear-crying.gif",
+            "https://media.tenor.com/9v6rSg1y_K0AAAAi/milk-and-mocha.gif"
         ];
 
         function handleNo() {
@@ -68,17 +69,20 @@
             const question = document.getElementById('question');
             const mainGif = document.getElementById('displayGif');
 
+            // 1. Text aur GIF update
             question.innerText = messages[noCount % messages.length];
             mainGif.src = gifs[noCount % gifs.length];
 
+            // 2. Button movement
             const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
             const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
             noBtn.style.position = 'fixed';
             noBtn.style.left = x + 'px';
             noBtn.style.top = y + 'px';
 
+            // 3. Yes button growth
             const currentSize = parseFloat(window.getComputedStyle(yesBtn).fontSize);
-            if (currentSize < 100) { 
+            if (currentSize < 110) { 
                 yesBtn.style.fontSize = (currentSize + 6) + "px";
                 yesBtn.style.padding = (currentSize + 5) + "px " + (currentSize + 25) + "px";
             }
@@ -88,6 +92,7 @@
         function celebrate() {
             document.getElementById('main-content').style.display = 'none';
             document.getElementById('success').style.display = 'block';
+            
             var end = Date.now() + (5 * 1000);
             (function frame() {
                 confetti({ particleCount: 5, angle: 60, spread: 70, origin: { x: 0 }, colors: ['#ff0000', '#ff69b4'] });
