@@ -10,7 +10,7 @@
         .container { padding: 20px; z-index: 10; width: 100%; }
         h1 { color: #d32f2f; font-size: 1.8rem; min-height: 80px; margin: 20px 0; }
         .gif-container { height: 200px; margin-bottom: 20px; display: flex; justify-content: center; }
-        .gif-container img { border-radius: 15px; width: 220px; height: 220px; object-fit: contain; background: white; padding: 5px; }
+        .gif-container img { border-radius: 15px; width: 220px; height: 220px; object-fit: contain; }
         .btn-wrapper { margin-top: 20px; display: flex; justify-content: center; align-items: center; gap: 15px; height: 150px; position: relative; width: 100%; }
         .btn { padding: 15px 30px; font-size: 1.2rem; font-weight: bold; border: none; border-radius: 50px; cursor: pointer; transition: 0.2s; z-index: 100; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
         #yesBtn { background-color: #4caf50; color: white; }
@@ -54,13 +54,18 @@
             "Ab toh YES hi dabana padega! ❤️"
         ];
 
-        // Robust Tenor Media Links
+        // Beige Teddy / Milk Mocha Sad GIFs
         const gifs = [
-            "https://media.tenor.com/v1.Y2lkPTc5MGI3NjExbnZueXN6eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4ZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/i1zhf7LhVv0GfS75z0/tenor.gif",
-            "https://media.tenor.com/qL8_nbe1u8MAAAAi/sad-cute.gif",
-            "https://media.tenor.com/978MhY7Ias0AAAAi/sad-cry.gif",
-            "https://media.tenor.com/9XvGvFmP4AAAAAAi/bear-sad.gif",
-            "https://media.tenor.com/6S30R5H7I5QAAAAi/sad-cat.gif"
+            "https://media.tenor.com/866_fL_V-pYAAAAi/milk-and-mocha-bear.gif",
+            "https://media.tenor.com/On7_s9yXfS8AAAAi/milk-and-mocha-bear-crying.gif",
+            "https://media.tenor.com/Y_f_3xI8A0YAAAAi/milk-and-mocha-sad.gif",
+            "https://media.tenor.com/9v6rSg1y_K0AAAAi/milk-and-mocha.gif",
+            "https://media.tenor.com/On7_s9yXfS8AAAAi/milk-and-mocha-bear-crying.gif",
+            "https://media.tenor.com/866_fL_V-pYAAAAi/milk-and-mocha-bear.gif",
+            "https://media.tenor.com/Y_f_3xI8A0YAAAAi/milk-and-mocha-sad.gif",
+            "https://media.tenor.com/On7_s9yXfS8AAAAi/milk-and-mocha-bear-crying.gif",
+            "https://media.tenor.com/866_fL_V-pYAAAAi/milk-and-mocha-bear.gif",
+            "https://media.tenor.com/Y_f_3xI8A0YAAAAi/milk-and-mocha-sad.gif"
         ];
 
         function handleNo() {
@@ -79,8 +84,10 @@
             noBtn.style.top = y + 'px';
 
             const currentSize = parseFloat(window.getComputedStyle(yesBtn).fontSize);
-            yesBtn.style.fontSize = (currentSize + 6) + "px";
-            yesBtn.style.padding = (currentSize + 5) + "px " + (currentSize + 25) + "px";
+            if (currentSize < 80) { 
+                yesBtn.style.fontSize = (currentSize + 6) + "px";
+                yesBtn.style.padding = (currentSize + 5) + "px " + (currentSize + 25) + "px";
+            }
 
             noCount++;
         }
