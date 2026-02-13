@@ -22,7 +22,7 @@
 
     <div id="main-content" class="container">
         <div class="gif-container">
-            <img id="displayGif" src="https://i.imgur.com/vS7V98X.gif">
+            <img id="displayGif" src="https://media.tenor.com/9v6rSg1y_K0AAAAi/milk-and-mocha.gif">
         </div>
         <h1 id="question">Will you be my Valentine, Gogoooo? 🌹</h1>
         
@@ -34,7 +34,7 @@
 
     <div id="success" class="container">
         <h1>Yayyy! I love you so much, Mushuu! 🥰❤️</h1>
-        <img src="https://i.imgur.com/pYIidit.gif" width="280">
+        <img src="https://media.tenor.com/gU_PbBy6gmoAAAAi/bear-kiss-bear-love.gif" width="280">
         <p style="font-size: 1.5rem; color: #d32f2f; font-weight: bold; margin-top: 15px;">Willl stayyy urss foreverrrr, sexyyy mommyyy! ✨</p>
     </div>
 
@@ -54,13 +54,13 @@
             "Ab toh YES hi dabana padega! ❤️"
         ];
 
-        // Direct Imgur GIF Links (High Reliability)
+        // Using high-stability media links
         const gifs = [
-            "https://i.imgur.com/6U8Y6Rk.gif",
-            "https://i.imgur.com/vS7V98X.gif",
-            "https://i.imgur.com/7S8V9Xz.gif",
-            "https://i.imgur.com/Xv7S98v.gif",
-            "https://i.imgur.com/vS7V98X.gif"
+            "https://media.tenor.com/v1.Y2lkPTc5MGI3NjExbnZueXN6eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4ZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/i1zhf7LhVv0GfS75z0/tenor.gif",
+            "https://media.tenor.com/qL8_nbe1u8MAAAAi/sad-cute.gif",
+            "https://media.tenor.com/978MhY7Ias0AAAAi/sad-cry.gif",
+            "https://media.tenor.com/9XvGvFmP4AAAAAAi/bear-sad.gif",
+            "https://media.tenor.com/6S30R5H7I5QAAAAi/sad-cat.gif"
         ];
 
         function handleNo() {
@@ -69,20 +69,20 @@
             const question = document.getElementById('question');
             const mainGif = document.getElementById('displayGif');
 
-            // 1. Update text and GIF
+            // Update content
             question.innerText = messages[noCount % messages.length];
-            mainGif.src = gifs[noCount % gifs.length] || "https://i.imgur.com/6U8Y6Rk.gif";
+            mainGif.src = gifs[noCount % gifs.length];
 
-            // 2. Button movement logic (Teleport)
+            // Teleport button
             const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
             const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
             noBtn.style.position = 'fixed';
             noBtn.style.left = x + 'px';
             noBtn.style.top = y + 'px';
 
-            // 3. Yes button growth
+            // Yes button growth
             const currentSize = parseFloat(window.getComputedStyle(yesBtn).fontSize);
-            if (currentSize < 90) { 
+            if (currentSize < 100) { 
                 yesBtn.style.fontSize = (currentSize + 6) + "px";
                 yesBtn.style.padding = (currentSize + 5) + "px " + (currentSize + 25) + "px";
             }
