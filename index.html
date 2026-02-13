@@ -9,10 +9,13 @@
         body { background-color: #ffebee; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; margin: 0; font-family: 'Poppins', sans-serif; text-align: center; overflow: hidden; }
         .container { padding: 20px; z-index: 10; width: 100%; }
         h1 { color: #d32f2f; font-size: 1.8rem; min-height: 80px; margin: 20px 0; }
-        .gif-container { width: 100%; max-width: 300px; height: 250px; margin: 0 auto 20px auto; overflow: hidden; border-radius: 15px; background: white; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-        iframe { pointer-events: none; border: none; }
+        
+        /* CSS Animation for Sticker */
+        .sticker-container { font-size: 100px; height: 150px; display: flex; justify-content: center; align-items: center; animation: bounce 1.5s infinite; }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+        
         .btn-wrapper { margin-top: 20px; display: flex; justify-content: center; align-items: center; gap: 15px; height: 150px; position: relative; width: 100%; }
-        .btn { padding: 15px 30px; font-size: 1.2rem; font-weight: bold; border: none; border-radius: 50px; cursor: pointer; transition: 0.1s; z-index: 100; }
+        .btn { padding: 15px 30px; font-size: 1.2rem; font-weight: bold; border: none; border-radius: 50px; cursor: pointer; transition: 0.1s; z-index: 100; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
         #yesBtn { background-color: #4caf50; color: white; }
         #noBtn { background-color: #f44336; color: white; position: relative; }
         #success { display: none; }
@@ -21,9 +24,7 @@
 <body>
 
     <div id="main-content" class="container">
-        <div class="gif-container" id="gifBox">
-            <iframe id="embedGif" src="https://giphy.com/embed/vSk4v8Q5U0688" width="100%" height="100%" frameBorder="0" class="giphy-embed"></iframe>
-        </div>
+        <div class="sticker-container" id="stickerBox">🧸</div>
         <h1 id="question">Will you be my Valentine, Gogoooo? 🌹</h1>
         
         <div class="btn-wrapper">
@@ -33,10 +34,8 @@
     </div>
 
     <div id="success" class="container">
+        <div class="sticker-container">💖🧸💖</div>
         <h1>Yayyy! I love you so much, Mushuu! 🥰❤️</h1>
-        <div class="gif-container">
-             <iframe src="https://giphy.com/embed/K97pG8vXJ99A5w6zU8" width="100%" height="100%" frameBorder="0" class="giphy-embed"></iframe>
-        </div>
         <p style="font-size: 1.5rem; color: #d32f2f; font-weight: bold; margin-top: 15px;">Willl stayyy urss foreverrrr, sexyyy mommyyy! ✨</p>
     </div>
 
@@ -56,35 +55,29 @@
             "Ab toh YES hi dabana padega! ❤️"
         ];
 
-        // Giphy Embed Links (These bypass simple hotlink blocks)
-        const embedLinks = [
-            "https://giphy.com/embed/OPU6wUKARA3NTIAmCl",
-            "https://giphy.com/embed/vSk4v8Q5U0688",
-            "https://giphy.com/embed/l378giAZgxPw3QO52",
-            "https://giphy.com/embed/7SF5scGB2AFrO",
-            "https://giphy.com/embed/IXb5JF1XyCosM"
-        ];
+        // Built-in Emojis for different emotions (No loading issues)
+        const stickers = ["🥺", "😢", "😭", "😿", "💔"];
 
         function handleNo() {
             const noBtn = document.getElementById('noBtn');
             const yesBtn = document.getElementById('yesBtn');
             const question = document.getElementById('question');
-            const embedGif = document.getElementById('embedGif');
+            const stickerBox = document.getElementById('stickerBox');
 
-            // 1. Text aur Embed Update
+            // Update text and sticker
             question.innerText = messages[noCount % messages.length];
-            embedGif.src = embedLinks[noCount % embedLinks.length];
+            stickerBox.innerText = stickers[noCount % stickers.length];
 
-            // 2. Button movement
+            // Teleport button
             const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
             const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
             noBtn.style.position = 'fixed';
             noBtn.style.left = x + 'px';
             noBtn.style.top = y + 'px';
 
-            // 3. Yes button growth
+            // Yes button growth
             const currentSize = parseFloat(window.getComputedStyle(yesBtn).fontSize);
-            if (currentSize < 110) { 
+            if (currentSize < 120) { 
                 yesBtn.style.fontSize = (currentSize + 7) + "px";
                 yesBtn.style.padding = (currentSize + 5) + "px " + (currentSize + 25) + "px";
             }
